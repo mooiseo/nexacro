@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="EmployeeDialog" width="420" height="590" titletext="New Form">
+    <Layouts>
+      <Layout height="590" mobileorientation="landscape" width="420">
+        <Grid id="Grid00" taborder="0" left="10" top="30" width="402" height="551" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="188"/>
+                <Column size="212"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사원코드"/>
+                <Cell col="1" text="사원명"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+		var empCode = gdsEmployee.getColumn(e.row, "EMP_CODE");
+		var authorityCode = gdsEmployee.getColumn(e.row, "AUTHORITY_CODE");
+		var empName = gdsEmployee.getColumn(e.row, "EMP_NAME");	
+		var password = gdsEmployee.getColumn(e.row, "PASSWORD");
+	
+	globalEmpCode = empCode;
+	globalAuthorityCode = authorityCode;
+	globalEmpName = empName;
+	
+	opener.empCode.value = empCode;
+	opener.empName.value = empName;
+	opener.setPassword(password);
+	close();	
+};
+]]></Script>
+  </Form>
+</FDL>
